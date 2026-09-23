@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fusion Counter Generator — DaVinci Resolve</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="./assets/index-DhxbT3x4.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DEG2OMhv.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-group">
+        <div class="logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="16" rx="3"></rect>
+            <line x1="7" y1="4" x2="7" y2="20"></line>
+            <line x1="12" y1="4" x2="12" y2="20"></line>
+            <line x1="17" y1="4" x2="17" y2="20"></line>
+          </svg>
+        </div>
+        <div>
+          <h1>Fusion Counter Generator</h1>
+          <p class="subtitle">Odometer Title Animation for DaVinci Resolve</p>
+        </div>
+      </div>
+      <div class="header-tag">DaVinci Resolve Ready</div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container">
+      <!-- Left Panel: Simple Controls -->
+      <section class="card controls-card">
+        <div class="card-header">
+          <h2>1. Quick Presets</h2>
+        </div>
+        <div class="preset-pills">
+          <button type="button" class="btn-preset active" data-start="0" data-end="100" data-duration="5" data-easing="inout">0 → 100</button>
+          <button type="button" class="btn-preset" data-start="100" data-end="0" data-duration="5" data-easing="out">100 → 0</button>
+          <button type="button" class="btn-preset" data-start="21" data-end="25" data-duration="3" data-easing="out">21 → 25</button>
+          <button type="button" class="btn-preset" data-start="0" data-end="1250" data-duration="8" data-easing="inout">0 → 1250</button>
+        </div>
+
+        <div class="card-header margin-top">
+          <h2>2. Counter Settings</h2>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="input-start">Start Value</label>
+            <input type="number" id="input-start" value="0" step="any" required />
+          </div>
+          <div class="form-group">
+            <label for="input-end">End Value</label>
+            <input type="number" id="input-end" value="100" step="any" required />
+          </div>
+          <div class="form-group">
+            <label for="input-duration">Duration (sec)</label>
+            <input type="number" id="input-duration" value="5" min="0.1" step="0.5" required />
+          </div>
+          <div class="form-group">
+            <label for="select-easing">Easing Motion</label>
+            <select id="select-easing">
+              <option value="inout" selected>InOut (Smooth acceleration & deceleration)</option>
+              <option value="out">Out (Fast start, slow finish)</option>
+              <option value="in">In (Slow start, fast finish)</option>
+              <option value="linear">Linear (Constant speed)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="input-fps">Timeline FPS</label>
+            <select id="input-fps">
+              <option value="24">24 fps</option>
+              <option value="25" selected>25 fps (PAL / Standard)</option>
+              <option value="29.97">29.97 fps (NTSC)</option>
+              <option value="30">30 fps</option>
+              <option value="50">50 fps</option>
+              <option value="60">60 fps</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="input-start-frame">Start Frame</label>
+            <input type="number" id="input-start-frame" value="0" step="1" />
+          </div>
+        </div>
+
+        <!-- Primary Action Buttons -->
+        <div class="action-buttons">
+          <button type="button" id="btn-copy-nodes" class="btn btn-primary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            Copy Nodes (Cmd+V in Fusion)
+          </button>
+          <button type="button" id="btn-download" class="btn btn-secondary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download .setting File
+          </button>
+        </div>
+
+        <!-- Collapsible Advanced Styles -->
+        <details class="advanced-details">
+          <summary>
+            <span>Style & Font Adjustments (Optional)</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="advanced-grid">
+            <div class="form-group">
+              <label for="input-font">Font Family</label>
+              <input type="text" id="input-font" value="Open Sans" placeholder="e.g. Open Sans, Arial, Impact" />
+            </div>
+            <div class="form-group">
+              <label for="input-style">Font Style</label>
+              <input type="text" id="input-style" value="Bold" placeholder="e.g. Bold, Regular" />
+            </div>
+            <div class="form-group">
+              <label for="input-size">Text Size</label>
+              <input type="number" id="input-size" value="0.25" step="0.01" min="0.05" max="1" />
+            </div>
+            <div class="form-group">
+              <label for="input-color">Text Color</label>
+              <div class="color-picker-wrapper">
+                <input type="color" id="input-color" value="#ffffff" />
+                <span id="color-hex-label">#FFFFFF</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="input-width-factor">Digit Width Spacing</label>
+              <input type="number" id="input-width-factor" value="0.80" step="0.05" />
+            </div>
+            <div class="form-group">
+              <label for="input-cell-factor">Window Mask Height</label>
+              <input type="number" id="input-cell-factor" value="1.25" step="0.05" />
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <!-- Right Panel: Live Preview & CLI -->
+      <section class="card preview-card">
+        <div class="card-header flex-between">
+          <h2>3. Live Preview</h2>
+          <span class="badge" id="preview-frame-badge">Frame 0 / 125</span>
+        </div>
+
+        <div class="canvas-wrapper">
+          <canvas id="preview-canvas" width="640" height="360"></canvas>
+          <div class="mask-guide"></div>
+        </div>
+
+        <div class="player-controls">
+          <button type="button" id="btn-play-pause" class="btn-icon">
+            <svg id="icon-play" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            <svg id="icon-pause" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="hidden"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+          </button>
+          <input type="range" id="timeline-scrubber" min="0" max="100" value="0" step="0.1" />
+          <span id="time-display" class="mono-text">0.00s / 5.00s</span>
+        </div>
+
+        <div class="value-display-bar">
+          <span class="label">Calculated Value:</span>
+          <span id="calculated-value" class="value-highlight">0.00</span>
+        </div>
+
+        <!-- CLI Command Drawer -->
+        <div class="cli-box">
+          <div class="cli-header">
+            <span>Terminal CLI Command</span>
+            <button type="button" id="btn-copy-cli" class="btn-sm">Copy Command</button>
+          </div>
+          <code id="cli-output">python3 fusion_counter_generator.py --start 0 --end 100 --duration 5 --easing inout --fps 25 -o counter_0_100.setting</code>
+        </div>
+      </section>
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden">Nodes copied! Press Cmd+V in Fusion node editor.</div>
+  </div>
+
+</body>
+</html>
